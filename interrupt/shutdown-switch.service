@@ -1,0 +1,15 @@
+[Unit]
+Description=shutdown-switch service
+
+# すぐ起動してもログに書かれる時間が補正される前だからとりあえずsshができるようになってから起動
+After=ssh.service
+
+[Service]
+ExecStart=interrupt/shutdown-switch.sh
+
+#起 動 ユ ー ザ を 指 定 USBを抜き差しするにはsudo指定でなくsuで実行しないとうまく行かない
+#suはUserに指定してもできなかった。User句を未指定でsuで起動するらしい
+#User=su
+
+[Install]
+WantedBy=multi-user.target

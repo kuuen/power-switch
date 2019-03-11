@@ -1,0 +1,4 @@
+HTTP_HOME_PATH=/hoge/power-switch/http/
+HTTP_DOC_PATH=/hoge/power-switch/log/
+PLOT_HOME_PATH=/hoge/power-switch/plot/
+_EOF_

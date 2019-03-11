@@ -1,0 +1,3 @@
+SWITCH_LOG_FILE_PATH=/hoge/power-switch/log/
+SWITCH_HOME_PATH=/hoge/power-switch/main/
+_EOF_

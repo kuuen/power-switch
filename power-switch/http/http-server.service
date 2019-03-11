@@ -1,0 +1,16 @@
+[Unit]
+Description=http-server-start service
+
+# すぐ起動しても時間が補正される前だからログに記載される時間がくうるから、とりあえずsshができるようになってから起動
+After=ssh.service
+
+[Service]
+EnvironmentFile=/hoge/power-switch/http/environmentFile.txt
+ExecStart=/hoge/power-switch/http/start.sh
+
+#起動ユーザを指定
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+
