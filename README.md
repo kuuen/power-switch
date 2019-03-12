@@ -25,14 +25,16 @@ wifiドンクル　PLANEX GW-USValue-EZ 802.11n Wireless Adapter [Realtek RTL818
 スイッチングモジュール 953-1C-12DG-1  
 モータドライバ TA7291P (ラズベリーパイのGPIOの低電流ではスイッチングモジュールの切り替えができなかった為、12vバッテリーの電気を使う)  
 降圧電源モジュール 型番わすれた　モータドライバで電圧調整はできたがこれを使えば容易だから使用  
+ケーブル、ケーブルコネクタ等  
+DC12vからUSB電源に変換できるソケット  
 
 ## Install
 ・ソフト  
 ソースを適当なディレクトリに配置(インストーラを作成すれば手作業は省けるはずね  
-各environmentFile.txt,とshファイルにあるパスを変更
+各environmentFile.txt,とshファイルにあるパスを変更  
 power-switch/main/power-switch.pyの以下を適切なな値に設定する  
- VOLT_MIN = 12.5     # 最低電圧
- VOLT_RETURN = 13.5  # 放電再開電圧
+ VOLT_MIN = 12.5     # 最低電圧  
+ VOLT_RETURN = 13.5  # 放電再開電圧  
 
 以下を/etc/systemd/system/にシンボリックリンクとして配置。systemctl disableすると削除されるからシンボリックリンクのほうが面倒くさくない  
  power-switch/main/power-switch.service  
@@ -65,7 +67,7 @@ INA226
  /A1 A0  
  
  アドレス0x41
- 1 　 ●
+ 1 　 ●  
  G ●  
  C  
  D  
