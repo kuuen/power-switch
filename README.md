@@ -26,7 +26,18 @@ wifiドンクル　PLANEX GW-USValue-EZ 802.11n Wireless Adapter [Realtek RTL818
 降圧電源モジュール 型番わすれた　モータドライバで電圧調整はできたがこれを使えば容易だから使用  
 
 ## Install
-・ソフト
+・ソフト  
+ソースを適当なディレクトリに配置(インストーラを作成すれば手作業は省けるはずね  
+各environmentFile.txt,とshファイルにあるパスを変更
+main/power-switch.pyの以下を適切なな値に設定する  
+ VOLT_MIN = 12.5     # 最低電圧
+ VOLT_RETURN = 13.5  # 放電再開電圧
+
+以下を/etc/systemd/system/にシンボリックリンクとして配置。systemctl disableすると削除されるからシンボリックリンクのほうが面倒くさくない  
+ main/power-switch.service 
+ http/http-server.service
+ 
+
 
 ・ハード
 
