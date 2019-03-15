@@ -77,5 +77,6 @@ INA226
 他のモジュールをバッテリーや充電ケーブルに接続する  
 
 全体図をどうにかして書いてみる
-![図](https://github.com/kuuen/power-switch/図.png)
+![図](https://github.com/kuuen/power-switch/blob/master/DSC_0063.JPG)
+やる気がでたら後で清書する
 
