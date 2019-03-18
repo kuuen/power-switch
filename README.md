@@ -31,7 +31,9 @@ DC12vからUSB電源に変換できるソケット
 ## Install
 ・ソフト  
 ソースを適当なディレクトリに配置(インストーラを作成すれば手作業は省けるはずね  
+
 各environmentFile.txt,とshファイルにあるパスを変更  
+
 power-switch/main/power-switch.pyの以下を適切なな値に設定する  
  VOLT_MIN = 12.5     # 最低電圧  
  VOLT_RETURN = 13.5  # 放電再開電圧  
