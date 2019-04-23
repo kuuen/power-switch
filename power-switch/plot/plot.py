@@ -25,6 +25,7 @@ from PIL import Image
 
 from logging import getLogger, StreamHandler, FileHandler ,DEBUG, INFO, ERROR, Formatter
 from logging.handlers import TimedRotatingFileHandler
+#import traceback
 
 # ログファイルに設定
 logFileName = 'create-plot-log.txt'
@@ -88,6 +89,9 @@ def createPlot(logFileName, imageFileName):
                     if len(l) > 0 :
                         pr = l[len(l) - 1]
                         l.append({'t':data[0], 'v':pr.get('v'), 'a':pr.get('a')})
+                    else:
+                        # 一発目で異常値の場合は0にする
+                        l.append({'t':data[0], 'v':0, 'a':0})
                     continue
 
                 l.append({'t':data[0], 'v':float(data[5]) - VOLT_CHENGE, 'a':float(data[6])})
@@ -97,6 +101,7 @@ def createPlot(logFileName, imageFileName):
                 print(data)
                 print(e.args)
                 print('<br/>次に進むドスエ<br/>')
+
         elif len(data) > 2 and data[2] == 'val2':
             try :
                 if data[5] == '65535' or  data[6] == '65535' :
@@ -106,6 +111,10 @@ def createPlot(logFileName, imageFileName):
                     if len(l2) > 0 :
                         pr = l2[len(l2) - 1]
                         l2.append({'t':data[0], 'v':pr.get('v'), 'a':pr.get('a')})
+                    else:
+                        # 一発目で異常値の場合は0にする
+                        l2.append({'t':data[0], 'v':0, 'a':0})
+
                     continue
 
                 l2.append({'t':data[0], 'a':float(data[6])})
@@ -119,6 +128,9 @@ def createPlot(logFileName, imageFileName):
     if len(l) < 1:
         print('対象が無いドスエ')
         return
+
+    #logger.error(l)
+    #logger.error(l2)
 
     l_v = [d.get('v') for d in l]
     l_t = [d.get('t') for d in l]
@@ -220,11 +232,12 @@ if args.mode != None and args.mode.find('now') > -1:
 
 try :
     createPlot(dataFileName, imageFile + '.png')
+
 except Exception as e:
-    logger.error('例外発生:' + dataFileName + e.args)
+    logger.error('例外発生:' + dataFileName)
+    logger.error(e)
     # 1ファイルで例外が起きても続行する
     print('アイエエー。予期せぬエラーな')
-    print(e.args)
 
 # 現在のログのみの場合はこれで終了
 if mode == 1:
@@ -239,10 +252,11 @@ for f in files:
     try :
         createPlot(f, imageFile + str(i) + '.png')
     except Exception as e:
-        logger.error('例外発生:' + f + e.args)
+        logger.error('例外発生:' + f)
+        logger.error(e)
         # 1ファイルで例外が起きても続行する
         print('アイエエー。予期せぬエラーな')
-        print(e.args)
+        #print(e.args)
     i += 1
 
 
