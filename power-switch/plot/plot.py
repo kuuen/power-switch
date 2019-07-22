@@ -231,7 +231,7 @@ if args.mode != None and args.mode.find('now') > -1:
     mode = 1
 
 try :
-    createPlot(dataFileName, imageFile + '.png')
+    createPlot(dataFileName, imageFile + '1' + '.png')
 
 except Exception as e:
     logger.error('例外発生:' + dataFileName)
