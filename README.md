@@ -56,6 +56,40 @@ httpサーバのポート変更(初期値は8000)
 i2cを有効化  
  sudo raspi-config -> Interfacing Options -> I2C をEnable  
  
+google driveにアップロード  
+ 
+ ライブラリインストール  
+ $ sudo pip install google-api-python-client PyDrive  
+ $ sudo pip3 install google-auth-oauthlib  
+ 
+ googleでOAuth認証設定  
+ ダッシュボード→プロジェクト作成  
+ 認証情報→認証情報を作成→OAuth クライアント ID  
+ OAuth同意画面から「ユーザーに表示するサービス名」を適当に入力します。  
+ その後に,その他を選択。適当な名前を入力して作成  
+
+ OAuth クライアントのID、クライアントシークレットは覚えておく
+
+ Google Drive APIを有効  
+ APIとサービス→ダッシュボード  
+ GoogleDriveAPIを有効にする  
+
+ settings.yamlを作成　「:」の後には半角スペースを必ず入れないといけなかったりする  
+
+client_config_backend:　settings
+client_config:
+　client_id:　[クライアントID]
+　client_secret:　[クライアントシークレット]
+
+save_credentials:　True
+save_credentials_backend: file
+save_credentials_file: credentials.json
+get_refresh_token: True
+oauth_scope:
+  - https://www.googleapis.com/auth/drive.file
+  - https://www.googleapis.com/auth/drive.install
+ 
+ 
 ・ハード  
 INA226  
  i2cのアドレス設定 はんだづけする  
@@ -81,4 +115,6 @@ INA226
 全体図をどうにかして書いてみる
 ![図](https://github.com/kuuen/power-switch/blob/master/DSC_0063.JPG)
 やる気がでたら後で清書する
+
+
 
