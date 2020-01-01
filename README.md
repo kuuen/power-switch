@@ -75,7 +75,7 @@ google driveにアップロード
  GoogleDriveAPIを有効にする  
 
  settings.yamlを作成　「:」の後には半角スペースを必ず入れないといけなかったりする  
-
+~~~
 client_config_backend:　settings
 client_config:
 　client_id:　[クライアントID]
@@ -88,7 +88,15 @@ get_refresh_token: True
 oauth_scope:
   - https://www.googleapis.com/auth/drive.file
   - https://www.googleapis.com/auth/drive.install
+ ~~~
  
+ 初回起動はURLが表示されるからそこに飛んでアプリの使用を許可する  
+ そこで表示された文字列をコンソールに入力したらgoogle driveにアクセス可能となる   
+ ※初回起動はリモードでpythonを実行してもうまく行かない。  
+ localのみでアクセス許可しているhttps通信を行うらしいので実行は実機で直接おこなう  
+ デスクトップ環境、ブラウザがある環境で実行。Raspberry Piに作成されたcredentials.jsonを移動した方が良さそう  
+ 
+
  
 ・ハード  
 INA226  
